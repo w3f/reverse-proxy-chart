@@ -40,7 +40,7 @@ workflows:
             tags:
               only: /.*/
 
-      - deploy:
+      - publishChart:
           filters:
             branches:
               ignore: /.*/
@@ -48,3 +48,12 @@ workflows:
               only: /v[0-9]+(\.[0-9]+)*/
           requires:
             - integrationTests
+
+      - deploy:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+          requires:
+            - publishChart
