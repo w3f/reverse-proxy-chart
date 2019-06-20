@@ -1,0 +1,10 @@
+{{ range .Values.domains -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "reverse-proxy.name" . }}
+spec:
+  externalName: {{ .target }}
+  type: ExternalName
+---
+{{ end -}}

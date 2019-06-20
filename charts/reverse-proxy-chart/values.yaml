@@ -1,0 +1,6 @@
+domains:
+- id: polkadot-wiki
+  origin: wiki.polkadot.network
+  target: polkadot-wiki.readthedocs.io
+
+environment: production

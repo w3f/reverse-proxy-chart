@@ -9,18 +9,18 @@ run_tests() {
 }
 
 teardown() {
-    helm delete --purge polkadot-wiki
+    helm delete --purge reverse-proxy
 }
 
 main(){
-    if [ -z "$KEEP_W3F_POLKADOT_WIKI" ]; then
+    if [ -z "$KEEP_W3F_REVERSE_PROXY" ]; then
         trap teardown EXIT
     fi
 
     /scripts/build-helm.sh \
         --set environment=ci \
-        polkadot-wiki \
-        ./charts/polkadot-wiki
+        reverse-proxy \
+        ./charts/reverse-proxy
 
     run_tests
 }

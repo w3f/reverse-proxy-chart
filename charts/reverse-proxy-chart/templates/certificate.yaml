@@ -1,19 +1,22 @@
 {{ if ne .Values.environment "ci" }}
+{{ range .Values.domains -}}
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "reverse-proxy.name" . }}
   namespace: default
 spec:
-  secretName: {{ .Release.Name }}-tls
+  secretName: {{ include "reverse-proxy.tlsName" . }}
   issuerRef:
     name: letsencrypt
   dnsNames:
-  - {{ .Values.domain }}
+  - {{ .origin }}
   acme:
     config:
     - dns01:
         provider: prod-dns
       domains:
-      - {{ .Values.domain }}
+      - {{ .origin }}
+---
+{{ end -}}
 {{ end }}

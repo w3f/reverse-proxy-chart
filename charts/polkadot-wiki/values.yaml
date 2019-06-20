@@ -1,5 +1,0 @@
-domain: wiki.polkadot.network
-
-environment: production
-
-targetDomain: polkadot-wiki.readthedocs.io
