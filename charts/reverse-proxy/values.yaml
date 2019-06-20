@@ -2,5 +2,8 @@ domains:
 - id: polkadot-wiki
   origin: wiki.polkadot.network
   target: polkadot-wiki.readthedocs.io
+- id: research-wiki
+  origin: research.web3.foundation
+  target: w3f-research.readthedocs.io
 
 environment: production
