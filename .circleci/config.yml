@@ -3,7 +3,7 @@ version: 2
 jobs:
   integrationTests:
     docker:
-      - image: web3f/ci-commons:v1.7.2
+      - image: web3f/ci-commons:v2.0.1
     steps:
       - checkout
       - setup_remote_docker:
@@ -15,7 +15,7 @@ jobs:
 
   publishChart:
     docker:
-      - image: web3f/ci-commons:v1.7.2
+      - image: web3f/ci-commons:v2.0.1
     steps:
       - checkout
       - run:
@@ -24,7 +24,7 @@ jobs:
 
   deploy:
     docker:
-      - image: web3f/ci-commons:v1.7.2
+      - image: web3f/ci-commons:v2.0.1
     steps:
       - checkout
       - run:
