@@ -12,6 +12,14 @@ jobs:
           description: run integration tests
           command: |
             /scripts/integration-tests.sh
+  helmLint:
+    docker:
+      - image: web3f/ci-commons:v2.0.1
+    steps:
+      - checkout
+      - run:
+          command: |
+            helm lint ./charts/reverse-proxy
 
   publishChart:
     docker:
@@ -39,7 +47,10 @@ workflows:
           filters:
             tags:
               only: /.*/
-
+      - helmLint:
+          filters:
+            tags:
+              only: /.*/
       - publishChart:
           filters:
             branches:
@@ -48,6 +59,7 @@ workflows:
               only: /v[0-9]+(\.[0-9]+)*/
           requires:
             - integrationTests
+            - helmLint
 
       - deploy:
           filters:
