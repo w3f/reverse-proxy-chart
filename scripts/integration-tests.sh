@@ -9,7 +9,7 @@ run_tests() {
 }
 
 teardown() {
-    helm delete --purge reverse-proxy
+    helm delete reverse-proxy
 }
 
 main(){
