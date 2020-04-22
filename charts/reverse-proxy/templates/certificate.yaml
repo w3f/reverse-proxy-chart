@@ -11,12 +11,6 @@ spec:
     name: letsencrypt
   dnsNames:
   - {{ .origin }}
-  acme:
-    config:
-    - dns01:
-        provider: prod-dns
-      domains:
-      - {{ .origin }}
 ---
 {{ end -}}
 {{ end }}
