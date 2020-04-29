@@ -1,7 +1,4 @@
 domains:
-- id: research-wiki
-  origin: research.web3.foundation
-  target: w3f-research.readthedocs.io
 - id: kusama-userguide
   origin: guide.kusama.network
   target: kusama-userguide.readthedocs.io
