@@ -62,6 +62,8 @@ workflows:
             - helmLint
 
       - deploy:
+          context:
+          - digital_ocean_access
           filters:
             branches:
               ignore: /.*/
