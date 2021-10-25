@@ -1,5 +1,5 @@
 {{ range .Values.domains -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/limit-rps: "10"
     nginx.ingress.kubernetes.io/rewrite-target: "/$1"
     nginx.ingress.kubernetes.io/upstream-vhost: "{{ .origin }}"
+    cert-manager.io/cluster-issuer: letsencrypt
   name: {{ include "reverse-proxy.name" . }}
 spec:
   tls:
@@ -19,8 +20,11 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: {{ include "reverse-proxy.name" . }}
-          servicePort: 80
+          service:
+            name: {{ include "reverse-proxy.name" . }}
+            port:
+              number: 80
         path: /(.*)
+        pathType: Prefix
 ---
 {{ end -}}
