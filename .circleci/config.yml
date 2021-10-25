@@ -52,7 +52,7 @@ workflows:
             tags:
               only: /.*/
       - publishChart:
-	  context: github-bot
+          context: github-bot
           filters:
             branches:
               ignore: /.*/
